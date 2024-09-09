@@ -112,6 +112,8 @@ import ViewSingleCategories from "pages/Devices/ViewSingleCategory"
 import UpdateCategory from "pages/Devices/UpdateCategory"
 
 import ViewDevices from "pages/Devices/ViewDevices"
+import TempConfiguration from "pages/Devices/TempConfiguration"
+
 
 const userRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
@@ -135,11 +137,7 @@ const userRoutes = [
     component: <AddDeviceLocation />,
   },
   { path: "/ViewLocationDetails", component: <ViewLocationDetails /> },
-  {
-    path: "/UpdateDeviceLocation/:client_id/:user_id/:location_id",
-    component: <UpdateDeviceLocation />,
-  },
-
+  { path: "/UpdateDeviceLocation/:client_id/:user_id/:location_id",component: <UpdateDeviceLocation />, },
   { path: "/AddCategory", component: <AddCategory /> },
   { path: "/ViewCategories", component: <ViewCategories /> },
   { path: "/ViewSingleCategories", component: <ViewSingleCategories /> },
@@ -150,6 +148,9 @@ const userRoutes = [
   { path: "/ViewDevices", component: <ViewDevices /> },
 
 
+  { path: "/TempConfiguration/:device_id/:user_id", component: <TempConfiguration /> },
+
+
   // this route should be at the end of all other routes
   {
     path: "/",
@@ -158,6 +159,8 @@ const userRoutes = [
   },
 ]
 
-const authRoutes = [{ path: "/login", component: <Login /> }]
+const authRoutes = [{ path: "/login", component: <Login /> },
+  
+]
 
 export { userRoutes, authRoutes }

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+
 import {
   mdiCloudCheck,
   mdiBattery,
@@ -12,10 +14,13 @@ import {
 } from "@mdi/js" // Import the necessary icons
 import Icon from "@mdi/react" // You will need to use an icon library like `@mdi/react` to render SVG icons
 
+
 const ViewDevices = () => {
+
+  const navigate = useNavigate();
   const [devices, setDevices] = useState([])
   const userId = "b4626d99-2f7a-498f-9411-ca669a91a86a" // Replace this with your actual userId
-
+//add battery icon
   useEffect(() => {
     const fetchDevices = async () => {
       try {
@@ -247,7 +252,10 @@ const ViewDevices = () => {
 
                   <Icon path={mdiMonitorDashboard} size={1} />
 
-                  <Icon path={mdiCogs} size={1} />
+                 
+                 <div  onClick={() => navigate(`/TempConfiguration/${device.id}/${userId}`)}>
+                   <Icon path={mdiCogs} size={1} />
+                   </div>
 
                   <Icon path={mdiCalendarBlankMultiple} size={1} />
 
@@ -264,6 +272,7 @@ const ViewDevices = () => {
               >
                 <h3>{device.deviceId}</h3>
               </div>
+
             </div>
           </div>
         ))

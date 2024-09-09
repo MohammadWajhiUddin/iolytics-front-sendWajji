@@ -143,7 +143,7 @@ const App = () => {
             <Route
               path="*"
               element={
-                <Navigate to={isAuthenticated ? "/ViewAllClients" : "/login"} />
+                <Navigate to={isAuthenticated ? "/dashboard" : "/login"} />
               }
             />
           </Routes>
