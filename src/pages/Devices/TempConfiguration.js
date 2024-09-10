@@ -99,7 +99,7 @@ const TempConfiguration = () => {
                   </Row>
                 </CardBody>
                 <CardFooter>
-                <div className="text-center">
+                <div className="text-center" style={{flexDirection:'row',justifyContent:'space-evenly',display:'flex'}}>
                 <Button
                   color="primary"
                   onClick={() => navigate(-1)}
@@ -107,6 +107,18 @@ const TempConfiguration = () => {
                 >
                   Back
                 </Button>
+
+
+                <Button
+                  color="danger"
+                  onClick={() => navigate(`/UpdateTempConfiguration/:${data.deviceId}/:${user_id}`)}
+                  style={{ borderRadius: '20px', padding: '0.5rem 2rem' }}
+                >
+                  Update Device
+                </Button>
+
+
+                
               </div>
                 </CardFooter>
               </Card>

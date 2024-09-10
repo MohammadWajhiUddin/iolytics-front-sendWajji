@@ -113,6 +113,7 @@ import UpdateCategory from "pages/Devices/UpdateCategory"
 
 import ViewDevices from "pages/Devices/ViewDevices"
 import TempConfiguration from "pages/Devices/TempConfiguration"
+import UpdateTempConfiguration from "pages/Devices/UpdateTempConfiguration"
 
 
 const userRoutes = [
@@ -149,6 +150,8 @@ const userRoutes = [
 
 
   { path: "/TempConfiguration/:device_id/:user_id", component: <TempConfiguration /> },
+  { path: "/UpdateTempConfiguration/:device_id/:user_id", component: <UpdateTempConfiguration /> },
+
 
 
   // this route should be at the end of all other routes

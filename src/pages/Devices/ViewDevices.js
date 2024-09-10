@@ -119,12 +119,13 @@ const ViewDevices = () => {
               </div>
 
               <div style={{ textAlign: "center" }}>
-                <p>Last Updated: {new Date(device.lasttemperaturedate).toLocaleTimeString()}</p>
+                <p>Last Updated: {new Date(device.lasttemperaturedate).toLocaleString()}</p>
               </div>
             </div>
 
             <div style={{ padding: "20px" }}>
-              <p style={{textAlign:'center'}}>Next Update At: {device.nextTempTake}</p>
+            
+              <p style={{textAlign:'center'}}>Next Update At:  {new Date(device.nextTempTake).toLocaleString()}</p>
 
               <div
                 style={{
@@ -155,13 +156,13 @@ const ViewDevices = () => {
               </div>
 
               <div style={{ display: "flex", justifyContent: "space-around", marginTop: "20px" }}>
-                <Icon path={mdiBookAlphabet} size={1} />
-                <Icon path={mdiMonitorDashboard} size={1} />
+                <Icon path={mdiBookAlphabet} size={1.3} />
+                <Icon path={mdiMonitorDashboard} size={1.3} />
                 <div onClick={() => navigate(`/TempConfiguration/${device.id}/${userId}`)}>
-                  <Icon path={mdiCogs} size={1} style={{ cursor: "pointer", color: "#3498db" }} />
+                  <Icon path={mdiCogs} size={1.3} style={{ cursor: "pointer", color: "#3498db" }} />
                 </div>
-                <Icon path={mdiCalendarBlankMultiple} size={1} />
-                <Icon path={mdiComment} size={1} />
+                <Icon path={mdiCalendarBlankMultiple} size={1.5} />
+                <Icon path={mdiComment} size={1.5} />
               </div>
 
               <div style={{ textAlign: "center", marginTop: "10px" }}>
