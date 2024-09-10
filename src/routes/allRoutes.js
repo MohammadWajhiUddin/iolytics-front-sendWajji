@@ -150,7 +150,7 @@ const userRoutes = [
 
 
   { path: "/TempConfiguration/:device_id/:user_id", component: <TempConfiguration /> },
-  { path: "/UpdateTempConfiguration/:device_id/:user_id", component: <UpdateTempConfiguration /> },
+  { path: "/UpdateTempConfiguration", component: <UpdateTempConfiguration /> },
 
 
 

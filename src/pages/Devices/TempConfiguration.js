@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Card, Spinner, Row, Col,CardBody, CardFooter,Button } from 'reactstrap'; 
 import 'bootstrap/dist/css/bootstrap.min.css';  
 import { useNavigate,useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {SingleDeviceTempConfigData} from  '../../Slices/TempConfig'
 
 const TempConfiguration = () => {
     const [data, setData] = useState('');
@@ -10,12 +12,11 @@ const TempConfiguration = () => {
     const {device_id,user_id} = useParams()
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         // Fetch the device temperature configuration
         const fetchDeviceConfig = async () => {
-            console.log("device id ",device_id)
-            console.log("user id ",user_id)
 
           try {
             const response = await fetch('https://tempin.qastco.co.uk:3231/api/insight/getdevicetempconfig', {
@@ -51,6 +52,12 @@ const TempConfiguration = () => {
             </Spinner>
           </div>
         );
+    }
+
+   const  ManagingData =(data)=>
+    {
+     dispatch(SingleDeviceTempConfigData(data))
+     navigate('/UpdateTempConfiguration')
     }
 
     return (
@@ -111,7 +118,7 @@ const TempConfiguration = () => {
 
                 <Button
                   color="danger"
-                  onClick={() => navigate(`/UpdateTempConfiguration/:${data.deviceId}/:${user_id}`)}
+                  onClick={() => ManagingData(data)}
                   style={{ borderRadius: '20px', padding: '0.5rem 2rem' }}
                 >
                   Update Device
