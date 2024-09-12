@@ -15,7 +15,6 @@ export const TempConfig = createSlice({
     },
     reducers: {
         SingleDeviceTempConfigData: (state,action) => {
-            console.log(action.payload)
             state.DeviceTempConfigData = action.payload;
             state.status = 'succeeded';
             state.error = null;   

@@ -155,9 +155,23 @@ const ViewDevices = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "space-around", marginTop: "20px" }}>
-                <Icon path={mdiBookAlphabet} size={1.3} />
+              <div style={{ display: "flex", justifyContent: "space-around", marginTop: "20px" }}
+              >
+                <div onClick={() => navigate(`/DeviceConfigurationSchedule/${device.id}/${device.deviceName}`)}
+                        onMouseEnter={e => (e.currentTarget.style.transform = "scale(2.02)")}
+                        onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                >
+                  <Icon path={mdiBookAlphabet} size={1.3} style={{ cursor: "pointer" }}  />
+                </div>
+
+
+                <div onClick={() => navigate(`/DeviceTempLog/${device.id}/${device.deviceName}`)}
+                        onMouseEnter={e => (e.currentTarget.style.transform = "scale(2.02)")}
+                        onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                >
                 <Icon path={mdiMonitorDashboard} size={1.3} />
+
+                </div>
                 <div onClick={() => navigate(`/TempConfiguration/${device.id}/${userId}`)}>
                   <Icon path={mdiCogs} size={1.3} style={{ cursor: "pointer", color: "#3498db" }} />
                 </div>
