@@ -77,7 +77,7 @@ export const clientLocation = createSlice({
     name: "clientLocation",
     initialState: {
         DeviceLocation: [],
-        CreatedDevicesLocation: '',
+        CreatedDevicesLocation: false,  // Assuming it's a boolean
         DeviceDetails:'',
         loading: false,
         status: 'idle',
@@ -91,6 +91,9 @@ export const clientLocation = createSlice({
           state.status = 'succeeded';
           state.error = null;    
         },
+        resetCreatedDevicesLocation: (state) => {
+            state.CreatedDevicesLocation = false;
+          },
     },
     extraReducers: (builder) => {
         builder
@@ -133,6 +136,6 @@ export const clientLocation = createSlice({
 
 });
 
-export const { SingleLocationDetails } = clientLocation.actions;
+export const { SingleLocationDetails ,resetCreatedDevicesLocation } = clientLocation.actions;
 
 export default clientLocation.reducer;

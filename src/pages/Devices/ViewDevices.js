@@ -95,8 +95,9 @@ const ViewDevices = () => {
             >
               <div style={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
                 <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: "1.2em" }}>{device.tempDownLimit}°C</p>
-                  <p style={{ fontSize: "1.2em" }}>{device.tempUpLimit}°C</p>
+                <p style={{ fontSize: "1.2em" }}>{device.tempUpLimit}°C</p>
+                  <p style={{ fontSize: "1.2em" ,marginTop:40}}>{device.tempDownLimit}°C</p>
+                
                 </div>
 
                 <div style={{ textAlign: "center" }}>
@@ -125,7 +126,7 @@ const ViewDevices = () => {
 
             <div style={{ padding: "20px" }}>
             
-              <p style={{textAlign:'center'}}>Next Update At:  {new Date(device.nextTempTake).toLocaleString()}</p>
+              <p style={{textAlign:'center'}}>Next Update At:  {new Date(device.nextTempLogTakeAt).toLocaleString()}</p>
 
               <div
                 style={{

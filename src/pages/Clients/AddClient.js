@@ -1,9 +1,21 @@
-import React, { useEffect,useState } from "react"
-import { Card, CardBody, Col, Row, Form, Button, Spinner, Alert } from "reactstrap"
+import React, { useEffect, useState } from "react"
+import {
+  Card,
+  CardBody,
+  Col,
+  Row,
+  Form,
+  Button,
+  Spinner,
+  Alert,
+} from "reactstrap"
 import { useSelector, useDispatch } from "react-redux"
 import { createClient, resetSuccess } from "Slices/ClientSlices"
+import { useNavigate } from "react-router-dom"
 
 const AddClient = () => {
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
   const id = useSelector(state => state.authenticateUser.user)
   const { loading, success } = useSelector(state => state.ClientDetails) // Assuming state.client holds client-related data
@@ -105,9 +117,23 @@ const AddClient = () => {
                       </Col>
                     </Row>
 
-                    <div className="mt-4">
-                      <Button type="submit" color="primary" block disabled={loading}>
-                        {loading ? <Spinner size="sm" /> : "Submit"}
+                    <div
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        display: "flex",
+                      }}
+                    >
+                      <Button
+                        color="danger"
+                        onClick={() => navigate(-1)}
+                        style={{ borderRadius: "20px", padding: "0.5rem 2rem" }}
+                      >
+                        Back
+                      </Button>
+
+                      <Button color="primary" type="submit" disabled={loading}>
+                        {loading ? <Spinner size="sm" /> : "Add Client"}
                       </Button>
                     </div>
                   </Form>

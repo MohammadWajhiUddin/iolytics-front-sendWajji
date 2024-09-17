@@ -112,6 +112,7 @@ export const ClientDevices = createSlice({
         loading: false,
         status: 'idle',
         success: false, // Add success state
+        success2:false,
 
         error: null,
     },
@@ -120,6 +121,7 @@ export const ClientDevices = createSlice({
             state.Category = action.payload;
             state.status = 'succeeded';
             state.error = null;   
+            state.success = true
         },
         resetSuccess: (state) => {
             state.success = false;
@@ -150,17 +152,17 @@ export const ClientDevices = createSlice({
             builder
             .addCase(createDeviceCategory.pending, (state) => {
                 state.loading = true;
-                state.success = false;
+                state.success2 = false;
             })
             .addCase(createDeviceCategory.fulfilled, (state, action) => {
                 state.loading = false;
                 state.Category = action.payload;
-                state.success = true; // Set success to true on successful creation
+                state.success2 = true; // Set success to true on successful creation
             })
             .addCase(createDeviceCategory.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-                state.success = false; // 
+                state.success2 = false; // 
             })
 
 

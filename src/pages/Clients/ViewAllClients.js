@@ -5,7 +5,7 @@ import { getAllClients } from "../../Slices/ClientSlices";
 import { useNavigate } from "react-router-dom";
 
 // Import images
-import img1 from "../../assets/images/small/img-1.jpg";
+import img1 from "../../assets/images/product/product-x/pro-4.png";
 
 const ViewAllClients = () => {
   const dispatch = useDispatch();
