@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import {
-  mdiCloudCheck,
-  mdiBattery,
-  mdiWifi,
+  mdiDatabaseCog,
+  mdiPost,
   mdiCogs,
   mdiComment,
   mdiCalendarBlankMultiple,
   mdiMonitorDashboard,
-  mdiBookAlphabet,
-  mdiArrowUpBoldOutline 
+  mdiHomeThermometerOutline,
+  mdiWrenchClock,
+  mdiArrowUpBoldOutline,
+  mdiDatabaseSettingsOutline,
+  mdiFileCog ,
+  mdiInvoiceTextClock
 } from "@mdi/js"
 import Icon from "@mdi/react"
 
 const ViewDevices = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [devices, setDevices] = useState([])
   const userId = "b4626d99-2f7a-498f-9411-ca669a91a86a"
 
@@ -77,39 +80,57 @@ const ViewDevices = () => {
               boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
               transition: "transform 0.3s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.02)")}
+            onMouseEnter={e =>
+              (e.currentTarget.style.transform = "scale(1.02)")
+            }
             onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
           >
             <div style={{ padding: "20px", textAlign: "center" }}>
-              <h2 style={{ fontSize: "1.5em", color: "#333" }}>{device.deviceName}</h2>
+              <h2 style={{ fontSize: "1.5em", color: "#333" }}>
+                {device.deviceName}
+              </h2>
             </div>
 
             <div
               style={{
                 height: "160px",
                 borderRadius: "20px 20px 0 0",
-                backgroundColor: device.lasttempalert === 0 ? "#27ae60" : "#e74c3c",
+                backgroundColor:
+                  device.lasttempalert === 0 ? "#27ae60" : "#e74c3c",
                 color: "#fff",
                 padding: "20px",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: "10px",
+                }}
+              >
                 <div style={{ textAlign: "center" }}>
-                <p style={{ fontSize: "1.2em" }}>{device.tempUpLimit}°C</p>
-                  <p style={{ fontSize: "1.2em" ,marginTop:40}}>{device.tempDownLimit}°C</p>
-                
+                  <p style={{ fontSize: "1.2em" }}>{device.tempUpLimit}°C</p>
+                  <p style={{ fontSize: "1.2em", marginTop: 40 }}>
+                    {device.tempDownLimit}°C
+                  </p>
                 </div>
 
                 <div style={{ textAlign: "center" }}>
-                  <h3 style={{ fontSize: "2.5em" }}>{device.lasttemperature}°C</h3>
+                  <h3 style={{ fontSize: "2.5em" }}>
+                    {device.lasttemperature}°C
+                  </h3>
                 </div>
 
                 <div style={{ textAlign: "center" }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
                     {device.lastrangeoutCount > 0 && (
                       <>
                         <p>{device.lastrangeoutCount}</p>
-                        <Icon path={mdiArrowUpBoldOutline} size={1} color="white" />
+                        <Icon
+                          path={mdiArrowUpBoldOutline}
+                          size={1}
+                          color="white"
+                        />
                       </>
                     )}
                   </div>
@@ -120,13 +141,18 @@ const ViewDevices = () => {
               </div>
 
               <div style={{ textAlign: "center" }}>
-                <p>Last Updated: {new Date(device.lasttemperaturedate).toLocaleString()}</p>
+                <p>
+                  Last Updated:{" "}
+                  {new Date(device.lasttemperaturedate).toLocaleString()}
+                </p>
               </div>
             </div>
 
             <div style={{ padding: "20px" }}>
-            
-              <p style={{textAlign:'center'}}>Next Update At:  {new Date(device.nextTempLogTakeAt).toLocaleString()}</p>
+              <p style={{ textAlign: "center" }}>
+                Next Update At:{" "}
+                {new Date(device.nextTempLogTakeAt).toLocaleString()}
+              </p>
 
               <div
                 style={{
@@ -138,46 +164,159 @@ const ViewDevices = () => {
               >
                 {/* Battery and WiFi Section */}
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <i className={`mdi mdi-${getBatteryIcon(device.lastBatteryLevel)}`} style={{ fontSize: "24px", marginRight: "5px" }}></i>
+                  <i
+                    className={`mdi mdi-${getBatteryIcon(device.lastBatteryLevel)}`}
+                    style={{ fontSize: "24px", marginRight: "5px" }}
+                  ></i>
                   <p>{device.lastBatteryLevel}%</p>
                 </div>
 
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <i className={`mdi mdi-${getWifiIcon(device.lastWifiLevel)}`} style={{ fontSize: "24px", marginRight: "5px" }}></i>
+                  <i
+                    className={`mdi mdi-${getWifiIcon(device.lastWifiLevel)}`}
+                    style={{ fontSize: "24px", marginRight: "5px" }}
+                  ></i>
                   <p>{device.lastWifiLevel}%</p>
                 </div>
 
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <i
-                    className={`mdi ${device.connected === "1" ? "mdi-cloud-check" : "mdi-cloud-off"}`}
-                    style={{ fontSize: "24px", marginRight: "5px", color: device.connected === "1" ? "green" : "red" }}
+                    className={`mdi ${device.connected === "1" ? "mdi-cloud-check" : "mdi-cloud-off-outline"}`}
+                    style={{
+                      fontSize: "24px",
+                      marginRight: "5px",
+                      color: device.connected === "1" ? "green" : "red",
+                    }}
                   ></i>
-                  <p>{device.connected === "1" ? "Connected" : "Disconnected"}</p>
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "space-around", marginTop: "20px" }}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  marginTop: "20px",
+                }}
               >
-                <div onClick={() => navigate(`/DeviceConfigurationSchedule/${device.id}/${device.deviceName}`)}
-                        onMouseEnter={e => (e.currentTarget.style.transform = "scale(2.02)")}
-                        onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                <div
+                  onClick={() =>
+                    navigate(
+                      `/DeviceConfigurationSchedule/${device.id}/${device.deviceName}`,
+                    )
+                  }
+                  onMouseEnter={e =>
+                    (e.currentTarget.style.transform = "scale(2.02)")
+                  }
+                  onMouseLeave={e =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                  style={{ textAlign: "center" }}
                 >
-                  <Icon path={mdiBookAlphabet} size={1.3} style={{ cursor: "pointer" }}  />
+                  <Icon
+                    path={mdiWrenchClock}
+                    size={1.3}
+                    style={{ cursor: "pointer" }}
+                  />
+                  <p style={{ fontSize: "10px", color: "black" }}>
+                    Configuration Schedule
+                  </p>
                 </div>
 
-
-                <div onClick={() => navigate(`/DeviceTempLog/${device.id}/${device.deviceName}`)}
-                        onMouseEnter={e => (e.currentTarget.style.transform = "scale(2.02)")}
-                        onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                <div
+                  onClick={() =>
+                    navigate(`/DeviceTempLog/${device.id}/${device.deviceName}`)
+                  }
+                  onMouseEnter={e =>
+                    (e.currentTarget.style.transform = "scale(2.02)")
+                  }
+                  onMouseLeave={e =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                  style={{ textAlign: "center" }}
                 >
-                <Icon path={mdiMonitorDashboard} size={1.3} />
+                  <Icon path={mdiInvoiceTextClock} size={1.3} />
+
+                  <p style={{ fontSize: "10px", color: "black" }}> Temp Schedule</p>
+                </div>
+                <div
+                  onClick={() => navigate(`/dashboard`)}
+                  onMouseEnter={e =>
+                    (e.currentTarget.style.transform = "scale(2.02)")
+                  }
+                  onMouseLeave={e =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                  style={{ textAlign: "center" }}
+                >
+                  <Icon path={mdiMonitorDashboard} size={1.3} />
+                  <p style={{ fontSize: "10px", color: "black" }}>
+                    Dashboard
+                  </p>{" "}
+                </div>
+                <div
+                  onClick={() =>
+                    navigate(`/TempConfiguration/${device.id}/${userId}`)
+                  }
+                  onMouseEnter={e =>
+                    (e.currentTarget.style.transform = "scale(2.02)")
+                  }
+                  onMouseLeave={e =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                  style={{ textAlign: "center" }}
+                >
+                  <Icon
+                    path={mdiCogs}
+                    size={1.3}
+                    style={{ cursor: "pointer", color: "#3498db" }}
+                  />
+                  <p style={{ fontSize: "10px", color: "black" }}>Settings</p>
+                </div>
+
+                <div
+                  onClick={() =>
+                    navigate(`/TempLogs/${device.id}/${userId}/${device.deviceName}`)
+                  }
+                  onMouseEnter={e =>
+                    (e.currentTarget.style.transform = "scale(2.02)")
+                  }
+                  onMouseLeave={e =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                  style={{ textAlign: "center" }}
+                >
+                  <Icon
+                    path={mdiFileCog}
+                    size={1.3}
+                    style={{ cursor: "pointer", color: "black" }}
+                  />
+                    <p style={{ fontSize: "10px", color: "black" }}>Temp Log</p>
 
                 </div>
-                <div onClick={() => navigate(`/TempConfiguration/${device.id}/${userId}`)}>
-                  <Icon path={mdiCogs} size={1.3} style={{ cursor: "pointer", color: "#3498db" }} />
+
+
+                <div
+                  onClick={() =>
+                    navigate(`/ConfigureLogs/${device.id}/${userId}/${device.deviceName}`)
+                  }
+                  onMouseEnter={e =>
+                    (e.currentTarget.style.transform = "scale(2.02)")
+                  }
+                  onMouseLeave={e =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                  style={{ textAlign: "center" }}
+                >
+                  <Icon
+                    path={mdiFileCog}
+                    size={1.3}
+                    style={{ cursor: "pointer", color: "black" }}
+                  />
+                    <p style={{ fontSize: "10px", color: "black" }}>Configuration Log</p>
+
                 </div>
-                <Icon path={mdiCalendarBlankMultiple} size={1.5} />
-                <Icon path={mdiComment} size={1.5} />
+
+
               </div>
 
               <div style={{ textAlign: "center", marginTop: "10px" }}>

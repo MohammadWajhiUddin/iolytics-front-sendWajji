@@ -118,6 +118,9 @@ import UpdateTempConfiguration from "pages/Devices/UpdateTempConfiguration"
 import DeviceConfigurationSchedule from "pages/Devices/DeviceConfigurationSchedule"
 import DeviceTempLog from "pages/Devices/DeviceTempLog"
 
+import TempLogs from "pages/Devices/TempLogs"
+import ConfigureLogs from "pages/Devices/ConfigureLogs"
+
 
 const userRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
@@ -156,6 +159,8 @@ const userRoutes = [
   { path: "/UpdateTempConfiguration", component: <UpdateTempConfiguration /> },
   { path: "/DeviceConfigurationSchedule/:device_id/:device_name", component: <DeviceConfigurationSchedule /> },
   { path: "/DeviceTempLog/:device_id/:device_name", component: <DeviceTempLog /> },
+  { path: "/TempLogs/:device_id/:user_id/:device_name", component: <TempLogs /> },
+  { path: "/ConfigureLogs/:device_id/:user_id/:device_name", component: <ConfigureLogs /> },
 
 
 
