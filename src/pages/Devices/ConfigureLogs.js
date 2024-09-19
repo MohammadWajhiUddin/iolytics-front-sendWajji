@@ -63,6 +63,9 @@ const ConfigureLogs = () => {
                   <strong>GMT Offset:</strong> {log.gmtOffsetMin} minutes<br/>
                   <strong>Device Pause:</strong> <span className={log.configDevicePause ? 'text-success' : 'text-muted'}>{log.configDevicePause ? 'Yes' : 'No'}</span><br/>
                   <strong>Hot Config With Log:</strong> <span className={log.hotConfigWithLog ? 'text-success' : 'text-muted'}>{log.hotConfigWithLog ? 'Yes' : 'No'}</span><br/>
+                                <strong>Hot Config With Log:</strong> <span className={log.hotConfigWithLog ? 'text-success' : 'text-muted'}>{log.hotConfigWithLog ? 'Yes' : 'No'}</span><br/>
+                                <strong>Created At:</strong> 
+                                {new Date(log.createdAt).toLocaleString()}
                 </CardText>
               </CardBody>
             </Card>

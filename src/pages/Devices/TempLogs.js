@@ -63,6 +63,10 @@ const TempLogs = () => {
                   <strong>Range Out Count:</strong> <span className="text-danger">{log.rangeoutCount}</span><br/>
                   <strong>Battery Alert:</strong> <span className={log.batteryLevelAlert ? 'text-success' : 'text-muted'}>{log.batteryLevelAlert ? 'Yes' : 'No'}</span><br/>
                   <strong>Wi-Fi Alert:</strong> <span className={log.wifiLevelAlert ? 'text-success' : 'text-muted'}>{log.wifiLevelAlert ? 'Yes' : 'No'}</span><br/>
+                  <strong>Created At:</strong> 
+                  {new Date(log.createdAt).toLocaleString()}
+                  <br/>
+
                 </CardText>
               </CardBody>
             </Card>

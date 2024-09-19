@@ -32,7 +32,7 @@ const UpdateTempConfiguration = () => {
     batteryLimit: "",
     wifiLimit: "",
     gmtOffsetMin: "",
-    configDevicePause: true,
+    configDevicePause: "",
   })
 
   const [loading, setLoading] = useState(false)
@@ -48,7 +48,7 @@ const UpdateTempConfiguration = () => {
       batteryLimit: deviceTempData.batteryLimit,
       wifiLimit: deviceTempData.wifiLimit,
       gmtOffsetMin: deviceTempData.gmtOffsetMin,
-      configDevicePause: true,
+      configDevicePause: deviceTempData.configDevicePause,
     })
   }, [deviceTempData])
 
@@ -196,6 +196,7 @@ const UpdateTempConfiguration = () => {
                   flexDirection: "row",
                   justifyContent: "space-between",
                   display: "flex",
+                  marginTop:20
                 }}
               >
                 <Button

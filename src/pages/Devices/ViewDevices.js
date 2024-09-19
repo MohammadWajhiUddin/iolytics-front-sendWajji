@@ -116,9 +116,9 @@ const ViewDevices = () => {
                 </div>
 
                 <div style={{ textAlign: "center" }}>
-                  <h3 style={{ fontSize: "2.5em" }}>
+                  <h1 style={{ fontSize: "4.5em" }}>
                     {device.lasttemperature}°C
-                  </h3>
+                  </h1>
                 </div>
 
                 <div style={{ textAlign: "center" }}>
@@ -135,7 +135,7 @@ const ViewDevices = () => {
                     )}
                   </div>
                   <p style={{ fontSize: "1.2em" }}>
-                    {device.hotConfigWithLog === 0 ? ">" : ""}
+                    {device.hotConfigWithLog === 1 ? ">" : ""}
                   </p>
                 </div>
               </div>
@@ -165,10 +165,10 @@ const ViewDevices = () => {
                 {/* Battery and WiFi Section */}
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <i
-                    className={`mdi mdi-${getBatteryIcon(device.lastBatteryLevel)}`}
+                    className={`mdi mdi-${getBatteryIcon(device.batteryPerc)}`}
                     style={{ fontSize: "24px", marginRight: "5px" }}
                   ></i>
-                  <p>{device.lastBatteryLevel}%</p>
+                  <p>{device.batteryPerc}%</p>
                 </div>
 
                 <div style={{ display: "flex", alignItems: "center" }}>
