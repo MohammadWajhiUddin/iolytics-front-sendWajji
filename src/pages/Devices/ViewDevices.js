@@ -116,10 +116,30 @@ const ViewDevices = () => {
                 </div>
 
                 <div style={{ textAlign: "center" }}>
-                  <h1 style={{ fontSize: "4.5em" }}>
-                    {device.lasttemperature}°C
-                  </h1>
-                </div>
+  <h1 style={{ fontSize: "4.5em" }}>
+    {device && device.lasttemperature !== null && device.lasttemperature !== undefined ? (
+      device.lasttemperature.toString().includes(".") ? (
+        <>
+          {device.lasttemperature.toString().split(".")[0]}
+          <span style={{ fontSize: "0.5em" }}>
+            .{device.lasttemperature.toString().split(".")[1]}
+          </span>
+          <span>°</span>
+          <span style={{ fontSize: "1em" }}>C</span> {/* Larger 'C' */}
+        </>
+      ) : (
+        <>
+          {device.lasttemperature}
+          <span>°</span>
+          <span style={{ fontSize: "1em" }}>C</span> {/* Larger 'C' */}
+        </>
+      )
+    ) : (
+      "No temperature available"
+    )}
+  </h1>
+</div>
+
 
                 <div style={{ textAlign: "center" }}>
                   <div style={{ display: "flex", alignItems: "center" }}>

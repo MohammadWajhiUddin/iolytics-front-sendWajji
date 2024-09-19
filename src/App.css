@@ -1,24 +1,8 @@
-/* App.css */
-
-/* Hide sidebar by default on mobile */
 @media (max-width: 768px) {
-    .mobile-menu-icon {
-      display: block;
-    }
-  
-    #sidebar-menu {
-      display: none;
-    }
-  
-    .sub-menu {
-      display: block;
-    }
+  #sidebar-menu {
+    width: 0; }
+
+  button {
+    display: block;
   }
-  
-  /* Show sidebar when it’s open */
-  @media (min-width: 769px) {
-    .mobile-menu-icon {
-      display: none;
-    }
-  }
-  
+}
