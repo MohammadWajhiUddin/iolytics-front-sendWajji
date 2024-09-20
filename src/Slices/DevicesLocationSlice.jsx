@@ -77,7 +77,7 @@ export const clientLocation = createSlice({
     name: "clientLocation",
     initialState: {
         DeviceLocation: [],
-        CreatedDevicesLocation: false,  // Assuming it's a boolean
+        CreatedDevicesLocation: false,  
         DeviceDetails:'',
         loading: false,
         status: 'idle',
