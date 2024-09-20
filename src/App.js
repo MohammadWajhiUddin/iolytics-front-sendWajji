@@ -1,14 +1,15 @@
-import React from "react";
-import { Route, Routes, Link, Navigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Routes, Link, Navigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "./Slices/UserAuthenticateSlice";
 import { userRoutes, authRoutes } from "./routes/allRoutes";
-import { Container, Navbar, NavbarBrand, Nav, NavItem, NavLink, Row, Col } from "reactstrap";
+import { Container, Navbar, NavbarBrand, Nav, NavItem, NavLink, Button, Col } from "reactstrap";
 import SimpleBar from "simplebar-react";
-import "./assets/scss/theme.scss";
+import "simplebar-react/dist/simplebar.min.css";
+import "./App.css";
 
 // Header Component
-const Header1 = () => {
+const Header1 = ({ toggleSidebar }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -16,8 +17,14 @@ const Header1 = () => {
   };
 
   return (
-    <Navbar color="dark" dark expand="md">
-      <NavbarBrand tag={Link} to="/">My App</NavbarBrand>
+    <Navbar color="dark" dark expand="md" className="d-flex justify-content-between">
+      <div className="d-flex align-items-center">
+        {/* Only show hamburger menu on mobile screens */}
+        <Button color="light" className="d-md-none me-2" onClick={toggleSidebar}>
+          <i className="mdi mdi-menu"></i>
+        </Button>
+        <NavbarBrand tag={Link} to="/">My App</NavbarBrand>
+      </div>
       <Nav className="ml-auto" navbar>
         <NavItem>
           <NavLink tag={Link} to="/login" onClick={handleLogout}>LogOut</NavLink>
@@ -28,9 +35,12 @@ const Header1 = () => {
 };
 
 // Sidebar Component
-const Sidebar = () => (
-  <SimpleBar style={{ height: "100%", width: 200, backgroundColor: "#343a40" }}>
-    <div id="sidebar-menu">
+const Sidebar = ({ isOpen, toggleSidebar }) => (
+  <div className={`sidebar ${isOpen ? "open" : ""}`}>
+    <Button color="light" className="d-md-none mb-3" onClick={toggleSidebar}>
+      <i className="mdi mdi-close"></i>
+    </Button>
+    <SimpleBar style={{ height: "100%" }}>
       <ul className="list-unstyled">
         <li className="menu-title" style={{ color: "#E0E0E0", fontSize: "1.3rem" }}>
           Temp Insight
@@ -51,25 +61,39 @@ const Sidebar = () => (
           </NavLink>
         </li>
       </ul>
-    </div>
-  </SimpleBar>
+    </SimpleBar>
+  </div>
 );
 
 // App Component
 const App = () => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   const isAuthenticated = useSelector(state => state.authenticateUser.isAuthenticated);
+  const location = useLocation(); // To get the current path
+
+  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   return (
-    <Container fluid style={{ display: "flex", height: "100vh" }}>
+    <Container fluid className="app-container">
       {isAuthenticated && (
-        <Col xs="3" style={{ backgroundColor: "#343a40", padding: 0 }}>
-          <Sidebar />
-        </Col>
+        <>
+          {/* Sidebar */}
+          <div className={`sidebar-container ${isSidebarOpen ? "open" : ""}`}>
+            <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+          </div>
+
+          {/* Overlay for mobile when sidebar is open */}
+          {isSidebarOpen && <div className="sidebar-overlay" onClick={toggleSidebar}></div>}
+        </>
       )}
 
-      <Col xs={isAuthenticated ? "9" : "12"} style={{ padding: 0 }}>
-        <Header1 />
-        <div style={{ flex: 1, padding: "15px" }}>
+      {/* Content Area */}
+      <Col className={`content-area ${isAuthenticated ? "with-sidebar" : ""}`}>
+        {/* Conditionally render Header1 only if not on login page and user is authenticated */}
+        {isAuthenticated && location.pathname !== "/login" && (
+          <Header1 toggleSidebar={toggleSidebar} />
+        )}
+        <div className="main-content">
           <Routes>
             {isAuthenticated
               ? userRoutes.map((route, index) => (
